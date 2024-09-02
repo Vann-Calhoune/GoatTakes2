@@ -1,0 +1,90 @@
+.ranking-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+.search-input {
+  margin: 10px 0;
+  padding: 8px;
+  font-size: 16px;
+  width: 250px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.containers {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  max-width: 800px;
+  justify-content: space-between;
+}
+
+.droppable-container {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  overflow-y: auto; /* Enables vertical auto-scrolling */
+  max-height: 500px; /* Sets the maximum height to allow scrolling */
+  min-height: 200px; /* Ensures the container maintains a minimum height */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  margin-top: 0;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.player-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.player-item {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #fff;
+  cursor: grab;
+  transition: background-color 0.2s ease;
+}
+
+.player-item:hover {
+  background-color: #f0f0f0;
+}
+
+.player-img {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+}
+
+.empty-spot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  color: #999;
+  border: 1px dashed #ddd;
+  border-radius: 4px;
+}
+
+.drop-spot-over {
+  background-color: #e0ffe0; /* Highlight when over */
+}
