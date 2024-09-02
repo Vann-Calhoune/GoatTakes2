@@ -1,3 +1,5 @@
+/* src/pages/Ranking.css */
+
 .ranking-page {
   display: flex;
   flex-direction: column;
@@ -73,6 +75,12 @@ h2 {
   margin-right: 10px;
   border-radius: 50%;
   border: 1px solid #ccc;
+}
+
+.rank-number {
+  font-weight: bold;
+  margin-right: 10px;
+  color: #333;
 }
 
 .empty-spot {

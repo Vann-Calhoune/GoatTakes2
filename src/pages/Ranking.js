@@ -126,7 +126,7 @@ function Ranking() {
                 {...provided.droppableProps}
                 className="droppable-container"
               >
-                <h2>Ranked Players</h2>
+                <h2>Rankings</h2>
                 <div className="player-list">
                   {rankedPlayers.map((player, index) => (
                     <Draggable
@@ -141,6 +141,7 @@ function Ranking() {
                           {...provided.dragHandleProps}
                           className="player-item"
                         >
+                          <span className="rank-number">{index + 1}</span>
                           <img
                             src={player.img}
                             alt={player.name}
