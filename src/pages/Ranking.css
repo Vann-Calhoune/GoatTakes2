@@ -19,11 +19,14 @@ h1 {
   border-radius: 4px;
 }
 
+.players-container {
+  width: 100%;
+  max-width: 1400px;
+}
+
 .containers {
   display: flex;
   gap: 20px;
-  width: 100%;
-  max-width: 800px;
   justify-content: space-between;
 }
 
@@ -33,9 +36,9 @@ h1 {
   border: 1px solid #ccc;
   border-radius: 5px;
   background-color: #f9f9f9;
-  overflow-y: auto; /* Enables vertical auto-scrolling */
-  max-height: 500px; /* Sets the maximum height to allow scrolling */
-  min-height: 200px; /* Ensures the container maintains a minimum height */
+  overflow-y: auto;
+  max-height: 500px;
+  min-height: 200px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -75,16 +78,23 @@ h2 {
   border: 1px solid #ccc;
 }
 
-.empty-spot {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 40px;
-  color: #999;
-  border: 1px dashed #ddd;
-  border-radius: 4px;
+.rank-number {
+  font-size: 20px;
+  margin-right: 10px;
 }
 
-.drop-spot-over {
-  background-color: #e0ffe0; /* Highlight when over */
+.ranking-settings {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.ranking-settings label {
+  margin-right: 5px;
+}
+
+.ranking-settings input,
+.ranking-settings select {
+  padding: 5px;
+  font-size: 16px;
 }
