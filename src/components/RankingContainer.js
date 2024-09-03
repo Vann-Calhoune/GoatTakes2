@@ -1,4 +1,3 @@
-// src/components/RankingContainer.js
 import React from 'react';
 import { Draggable } from '@hello-pangea/dnd';
 
@@ -17,7 +16,9 @@ const RankingContainer = React.forwardRef(({ rankedPlayers, rankingSettings, pro
                 className="player-item"
               >
                 <span className="rank-number">
-                  {rankingSettings.order === 'descending' ? rankingSettings.startNumber + index : rankingSettings.startNumber - index}
+                  {rankingSettings.order === 'descending'
+                    ? rankingSettings.startNumber - index
+                    : rankingSettings.startNumber + index}
                 </span>
                 <img src={player.img} alt={player.name} className="player-img" />
                 <span>{player.name}</span>
