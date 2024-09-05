@@ -25,11 +25,18 @@ function Compare() {
     return data.map((season) => {
       const gamesPlayed = season.GP || 1; // Avoid division by zero
       return {
-        season: season.SEASON_ID,
-        points_per_game: (season.PTS / gamesPlayed).toFixed(1),
-        rebounds_per_game: ((season.REB) / gamesPlayed).toFixed(1),
-        assists_per_game: ((season.AST) / gamesPlayed).toFixed(1),
-      };
+ season: season.SEASON_ID, // Last two digits of the season
+        team: season.TEAM_ABBREVIATION || 'Unknown',
+      games_played: season.GP || 0,
+      minutes_per_game: (season.MIN / gamesPlayed).toFixed(1),
+      blocks_per_game: (season.BLK / gamesPlayed).toFixed(1),
+      steals_per_game: (season.STL / gamesPlayed).toFixed(1),
+      fg_percentage: (season.FG_PCT * 100).toFixed(1), // Convert to percentage
+      fg3_percentage: (season.FG3_PCT * 100).toFixed(1), // Convert to percentage
+      ft_percentage: (season.FT_PCT * 100).toFixed(1), // Convert to percentage
+      points_per_game: (season.PTS / gamesPlayed).toFixed(1),
+      rebounds_per_game: (season.REB / gamesPlayed).toFixed(1),
+      assists_per_game: (season.AST / gamesPlayed).toFixed(1),      };
     });
   };
 
@@ -70,19 +77,36 @@ function Compare() {
             <table>
               <thead>
                 <tr>
-                  <th>Season</th>
-                  <th>PPG</th>
-                  <th>RPG</th>
-                  <th>APG</th>
+                <th>Season</th>
+                <th>Team</th>
+                                 <th>GP</th>
+                                 <th>MPG</th>
+                                  <th>PPG</th>
+                                  <th>RPG</th>
+                                  <th>APG</th>
+                                 <th>BPG</th>
+                                 <th>SPG</th>
+                                 <th>FG%</th>
+                                 <th>3P%</th>
+                                 <th>FT%</th>
                 </tr>
               </thead>
               <tbody>
                 {statsOne.map((stat, index) => (
                   <tr key={index}>
                     <td>{stat.season}</td>
-                    <td>{stat.points_per_game}</td>
-                    <td>{stat.rebounds_per_game}</td>
-                    <td>{stat.assists_per_game}</td>
+                    <td>{stat.team}</td>
+                                   <td>{stat.games_played}</td>
+
+                                   <td>{stat.minutes_per_game}</td>
+                                   <td>{stat.points_per_game}</td>
+                                   <td>{stat.rebounds_per_game}</td>
+                                   <td>{stat.assists_per_game}</td>
+                                   <td>{stat.blocks_per_game}</td>
+                                   <td>{stat.steals_per_game}</td>
+                                   <td>{stat.fg_percentage}%</td>
+                                   <td>{stat.fg3_percentage}%</td>
+                                   <td>{stat.ft_percentage}%</td>
                   </tr>
                 ))}
               </tbody>
@@ -97,19 +121,36 @@ function Compare() {
             <table>
               <thead>
                 <tr>
-                  <th>Season</th>
-                  <th>PPG</th>
-                  <th>RPG</th>
-                  <th>APG</th>
+                <th>Season</th>
+
+                <th>Team</th>
+                <th>GP</th>
+                <th>MPG</th>
+                <th>PPG</th>
+                <th>RPG</th>
+                <th>APG</th>
+                <th>BPG</th>
+                <th>SPG</th>
+                <th>FG%</th>
+                <th>3P%</th>
+                <th>FT%</th>
                 </tr>
               </thead>
               <tbody>
                 {statsTwo.map((stat, index) => (
                   <tr key={index}>
                     <td>{stat.season}</td>
-                    <td>{stat.points_per_game}</td>
-                    <td>{stat.rebounds_per_game}</td>
-                    <td>{stat.assists_per_game}</td>
+                    <td>{stat.team}</td>
+                                     <td>{stat.games_played}</td>
+                                     <td>{stat.minutes_per_game}</td>
+                                     <td>{stat.points_per_game}</td>
+                                     <td>{stat.rebounds_per_game}</td>
+                                     <td>{stat.assists_per_game}</td>
+                                     <td>{stat.blocks_per_game}</td>
+                                     <td>{stat.steals_per_game}</td>
+                                     <td>{stat.fg_percentage}%</td>
+                                     <td>{stat.fg3_percentage}%</td>
+                                     <td>{stat.ft_percentage}%</td>
                   </tr>
                 ))}
               </tbody>
