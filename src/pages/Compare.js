@@ -8,14 +8,20 @@ function Compare() {
   const [statsOne, setStatsOne] = useState(null);
   const [statsTwo, setStatsTwo] = useState(null);
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false); // New loading state
 
   const fetchStats = async (playerName) => {
     try {
-      const response = await axios.get(`http://127.0.0.1:5000/api/player-stats?name=${encodeURIComponent(playerName)}`);
+      setLoading(true); // Start loading
+      const response = await axios.get(
+        `http://127.0.0.1:5000/api/player-stats?name=${encodeURIComponent(playerName)}`
+      );
       return response.data;
     } catch (error) {
       setError(`Failed to fetch stats for ${playerName}`);
       console.error(error);
+    } finally {
+      setLoading(false); // End loading
     }
   };
 
@@ -25,23 +31,26 @@ function Compare() {
     return data.map((season) => {
       const gamesPlayed = season.GP || 1; // Avoid division by zero
       return {
- season: season.SEASON_ID, // Last two digits of the season
+        season: season.SEASON_ID.slice(-2), // Last two digits of the season
         team: season.TEAM_ABBREVIATION || 'Unknown',
-      games_played: season.GP || 0,
-      minutes_per_game: (season.MIN / gamesPlayed).toFixed(1),
-      blocks_per_game: (season.BLK / gamesPlayed).toFixed(1),
-      steals_per_game: (season.STL / gamesPlayed).toFixed(1),
-      fg_percentage: (season.FG_PCT * 100).toFixed(1), // Convert to percentage
-      fg3_percentage: (season.FG3_PCT * 100).toFixed(1), // Convert to percentage
-      ft_percentage: (season.FT_PCT * 100).toFixed(1), // Convert to percentage
-      points_per_game: (season.PTS / gamesPlayed).toFixed(1),
-      rebounds_per_game: (season.REB / gamesPlayed).toFixed(1),
-      assists_per_game: (season.AST / gamesPlayed).toFixed(1),      };
+        games_played: season.GP || 0,
+        minutes_per_game: (season.MIN / gamesPlayed).toFixed(1),
+        blocks_per_game: (season.BLK / gamesPlayed).toFixed(1),
+        steals_per_game: (season.STL / gamesPlayed).toFixed(1),
+        fg_percentage: (season.FG_PCT * 100).toFixed(1), // Convert to percentage
+        fg3_percentage: (season.FG3_PCT * 100).toFixed(1), // Convert to percentage
+        ft_percentage: (season.FT_PCT * 100).toFixed(1), // Convert to percentage
+        points_per_game: (season.PTS / gamesPlayed).toFixed(1),
+        rebounds_per_game: (season.REB / gamesPlayed).toFixed(1),
+        assists_per_game: (season.AST / gamesPlayed).toFixed(1),
+      };
     });
   };
 
   const handleFetchStats = async () => {
     setError('');
+    setStatsOne(null);
+    setStatsTwo(null);
     if (playerOne) {
       const dataOne = await fetchStats(playerOne);
       setStatsOne(calculateAverages(dataOne));
@@ -70,25 +79,27 @@ function Compare() {
         <button onClick={handleFetchStats}>Fetch Stats</button>
       </div>
       {error && <p className="error">{error}</p>}
+      {loading && <div className="loading-spinner"></div>} {/* Loading spinner */}
       <div className="stats-container">
+        {/* Player stats for Player One */}
         <div className="player-stats">
           <h3>Stats for {playerOne}</h3>
           {statsOne ? (
             <table>
               <thead>
                 <tr>
-                <th>Season</th>
-                <th>Team</th>
-                                 <th>GP</th>
-                                 <th>MPG</th>
-                                  <th>PPG</th>
-                                  <th>RPG</th>
-                                  <th>APG</th>
-                                 <th>BPG</th>
-                                 <th>SPG</th>
-                                 <th>FG%</th>
-                                 <th>3P%</th>
-                                 <th>FT%</th>
+                  <th>Season</th>
+                  <th>Team</th>
+                  <th>GP</th>
+                  <th>MPG</th>
+                  <th>PPG</th>
+                  <th>RPG</th>
+                  <th>APG</th>
+                  <th>BPG</th>
+                  <th>SPG</th>
+                  <th>FG%</th>
+                  <th>3P%</th>
+                  <th>FT%</th>
                 </tr>
               </thead>
               <tbody>
@@ -96,44 +107,43 @@ function Compare() {
                   <tr key={index}>
                     <td>{stat.season}</td>
                     <td>{stat.team}</td>
-                                   <td>{stat.games_played}</td>
-
-                                   <td>{stat.minutes_per_game}</td>
-                                   <td>{stat.points_per_game}</td>
-                                   <td>{stat.rebounds_per_game}</td>
-                                   <td>{stat.assists_per_game}</td>
-                                   <td>{stat.blocks_per_game}</td>
-                                   <td>{stat.steals_per_game}</td>
-                                   <td>{stat.fg_percentage}%</td>
-                                   <td>{stat.fg3_percentage}%</td>
-                                   <td>{stat.ft_percentage}%</td>
+                    <td>{stat.games_played}</td>
+                    <td>{stat.minutes_per_game}</td>
+                    <td>{stat.points_per_game}</td>
+                    <td>{stat.rebounds_per_game}</td>
+                    <td>{stat.assists_per_game}</td>
+                    <td>{stat.blocks_per_game}</td>
+                    <td>{stat.steals_per_game}</td>
+                    <td>{stat.fg_percentage}%</td>
+                    <td>{stat.fg3_percentage}%</td>
+                    <td>{stat.ft_percentage}%</td>
                   </tr>
                 ))}
               </tbody>
             </table>
           ) : (
-            <p>No stats available</p>
+            !loading && <p>No stats available</p>
           )}
         </div>
+        {/* Player stats for Player Two */}
         <div className="player-stats">
           <h3>Stats for {playerTwo}</h3>
           {statsTwo ? (
             <table>
               <thead>
                 <tr>
-                <th>Season</th>
-
-                <th>Team</th>
-                <th>GP</th>
-                <th>MPG</th>
-                <th>PPG</th>
-                <th>RPG</th>
-                <th>APG</th>
-                <th>BPG</th>
-                <th>SPG</th>
-                <th>FG%</th>
-                <th>3P%</th>
-                <th>FT%</th>
+                  <th>Season</th>
+                  <th>Team</th>
+                  <th>GP</th>
+                  <th>MPG</th>
+                  <th>PPG</th>
+                  <th>RPG</th>
+                  <th>APG</th>
+                  <th>BPG</th>
+                  <th>SPG</th>
+                  <th>FG%</th>
+                  <th>3P%</th>
+                  <th>FT%</th>
                 </tr>
               </thead>
               <tbody>
@@ -141,22 +151,22 @@ function Compare() {
                   <tr key={index}>
                     <td>{stat.season}</td>
                     <td>{stat.team}</td>
-                                     <td>{stat.games_played}</td>
-                                     <td>{stat.minutes_per_game}</td>
-                                     <td>{stat.points_per_game}</td>
-                                     <td>{stat.rebounds_per_game}</td>
-                                     <td>{stat.assists_per_game}</td>
-                                     <td>{stat.blocks_per_game}</td>
-                                     <td>{stat.steals_per_game}</td>
-                                     <td>{stat.fg_percentage}%</td>
-                                     <td>{stat.fg3_percentage}%</td>
-                                     <td>{stat.ft_percentage}%</td>
+                    <td>{stat.games_played}</td>
+                    <td>{stat.minutes_per_game}</td>
+                    <td>{stat.points_per_game}</td>
+                    <td>{stat.rebounds_per_game}</td>
+                    <td>{stat.assists_per_game}</td>
+                    <td>{stat.blocks_per_game}</td>
+                    <td>{stat.steals_per_game}</td>
+                    <td>{stat.fg_percentage}%</td>
+                    <td>{stat.fg3_percentage}%</td>
+                    <td>{stat.ft_percentage}%</td>
                   </tr>
                 ))}
               </tbody>
             </table>
           ) : (
-            <p>No stats available</p>
+            !loading && <p>No stats available</p>
           )}
         </div>
       </div>
