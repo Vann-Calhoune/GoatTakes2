@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';
 import PlayerList from '../components/PlayerList';
 import RankingSettings from '../components/RankingSettings';
-import RankingContainer from '../components/RankingContainer'; // Ensure this is imported
+import RankingContainer from '../components/RankingContainer';
 import './Ranking.css';
 
 const nba75Players = [
