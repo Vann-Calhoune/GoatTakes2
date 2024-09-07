@@ -1,128 +1,134 @@
-/* Container styling */
 .compare-container {
-  padding: 20px;
-  max-width: 95vw;
-  max-height: 95vh;
+  padding: 2rem;
+  max-width: 1200px;
   margin: 0 auto;
   font-family: Arial, sans-serif;
   background-color: #f8f9fa;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-/* Input group styling */
 .input-group {
   display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
+  gap: 1rem;
+  margin-bottom: 2rem;
 }
 
-input {
-  padding: 12px;
-  font-size: 16px;
-  border: 1px solid #ddd;
+.input-group input {
+  flex: 1;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #e2e8f0;
   border-radius: 4px;
   outline: none;
-  transition: border-color 0.3s;
+  transition: border-color 0.3s ease;
 }
 
-input:focus {
-  border-color: #007bff;
+.input-group input:focus {
+  border-color: #4299e1;
 }
 
-button {
-  padding: 12px 20px;
-  font-size: 16px;
+.input-group button {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
   cursor: pointer;
-  background-color: #007bff;
+  background-color: #4299e1;
   color: #fff;
   border: none;
   border-radius: 4px;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s ease;
 }
 
-button:hover {
-  background-color: #0056b3;
+.input-group button:hover {
+  background-color: #3182ce;
 }
 
-/* Stats container styling */
 .stats-container {
   display: flex;
-  gap: 20px;
-  margin-top: 20px;
-  justify-content: space-around; /* Center the player stats containers */
+  gap: 2rem;
+  margin-top: 2rem;
 }
 
 .player-stats {
   flex: 1;
-  max-width: 45%;
   background-color: #ffffff;
-  padding: 20px;
+  padding: 1.5rem;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   overflow-y: auto;
-  max-height: 400px;
+  max-height: 600px;
 }
 
 .player-stats h3 {
   text-align: center;
-  margin-bottom: 10px;
-  font-size: 18px;
-  color: #333;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  color: #2d3748;
 }
 
-/* Table styling */
 table {
   width: 100%;
-  border-collapse: collapse;
-  margin-top: 10px;
+  border-collapse: separate;
+  border-spacing: 0;
 }
 
 thead {
-  background-color: #007bff;
+  background-color: #4299e1;
   color: #fff;
+  position: sticky;
+  top: 0;
 }
 
-th,
-td {
-  padding: 10px;
+th, td {
+  padding: 0.75rem;
   text-align: center;
-  border: 1px solid #ddd;
-  font-size: 14px;
+  border-bottom: 1px solid #e2e8f0;
+  font-size: 0.875rem;
 }
 
 th {
   font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
-tr:nth-child(even) {
-  background-color: #f2f2f2;
+tbody tr:nth-child(even) {
+  background-color: #f7fafc;
 }
 
-tr:hover {
-  background-color: #e9ecef;
-  transition: background-color 0.2s;
+tbody tr:hover {
+  background-color: #edf2f7;
+  transition: background-color 0.2s ease;
 }
 
-/* Error message styling */
 .error {
-  color: #dc3545;
+  color: #e53e3e;
   text-align: center;
-  margin-top: 10px;
+  margin-top: 1rem;
   font-weight: bold;
 }
 
 .loading-spinner {
-  border: 8px solid #f3f3f3;
+  border: 4px solid #e2e8f0;
   border-radius: 50%;
-  border-top: 8px solid #3498db;
+  border-top: 4px solid #4299e1;
   width: 40px;
   height: 40px;
   animation: spin 1s linear infinite;
-  margin: 10px auto;
+  margin: 2rem auto;
 }
 
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+@media (max-width: 768px) {
+  .stats-container {
+    flex-direction: column;
+  }
+
+  .player-stats {
+    max-width: 100%;
+  }
 }
