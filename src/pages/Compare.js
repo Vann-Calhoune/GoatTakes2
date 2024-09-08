@@ -79,19 +79,24 @@ function Compare() {
       setStatsTwo(calculateAverages(dataTwo));
     }
   };
+
+  const capitalizePlayerName = (name) => {
+    return name.toUpperCase();
+  };
+
   return (
     <div className="compare-container">
-    <h1>Compare Players</h1>
+      <h1>Compare Players</h1>
       <div className="input-group">
         <input
           type="text"
-          placeholder="Enter first player name"
+          placeholder="Enter first player's full name"
           value={playerOne}
           onChange={(e) => setPlayerOne(e.target.value)}
         />
         <input
           type="text"
-          placeholder="Enter second player name"
+          placeholder="Enter second player's full name"
           value={playerTwo}
           onChange={(e) => setPlayerTwo(e.target.value)}
         />
@@ -99,94 +104,92 @@ function Compare() {
       </div>
       {error && <p className="error">{error}</p>}
       {loading && <div className="loading-spinner"></div>}
-      <div className="stats-container">
-        <div className="player-stats">
-          <h3>{playerOne}</h3>
-          {statsOne ? (
-            <table>
-              <thead>
-                <tr>
-                  <th>Season</th>
-                  <th>Team</th>
-                  <th>GP</th>
-                  <th>MPG</th>
-                  <th>PPG</th>
-                  <th>RPG</th>
-                  <th>APG</th>
-                  <th>BPG</th>
-                  <th>SPG</th>
-                  <th>FG%</th>
-                  <th>3P%</th>
-                  <th>FT%</th>
-                </tr>
-              </thead>
-              <tbody>
-                {statsOne.map((stat, index) => (
-                  <tr key={index}>
-                    <td>{stat.season}</td>
-                    <td>{stat.team}</td>
-                    <td>{stat.games_played}</td>
-                    <td>{stat.minutes_per_game}</td>
-                    <td>{stat.points_per_game}</td>
-                    <td>{stat.rebounds_per_game}</td>
-                    <td>{stat.assists_per_game}</td>
-                    <td>{stat.blocks_per_game}</td>
-                    <td>{stat.steals_per_game}</td>
-                    <td>{stat.fg_percentage}%</td>
-                    <td>{stat.fg3_percentage}%</td>
-                    <td>{stat.ft_percentage}%</td>
+      {(statsOne || statsTwo) && (
+        <div className="stats-container">
+          {statsOne && (
+            <div className="player-stats">
+              <h3>{capitalizePlayerName(playerOne)}</h3>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Season</th>
+                    <th>Team</th>
+                    <th>GP</th>
+                    <th>MPG</th>
+                    <th>PPG</th>
+                    <th>RPG</th>
+                    <th>APG</th>
+                    <th>BPG</th>
+                    <th>SPG</th>
+                    <th>FG%</th>
+                    <th>3P%</th>
+                    <th>FT%</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          ) : (
-            !loading && <p>No stats available</p>
+                </thead>
+                <tbody>
+                  {statsOne.map((stat, index) => (
+                    <tr key={index}>
+                      <td>{stat.season}</td>
+                      <td>{stat.team}</td>
+                      <td>{stat.games_played}</td>
+                      <td>{stat.minutes_per_game}</td>
+                      <td>{stat.points_per_game}</td>
+                      <td>{stat.rebounds_per_game}</td>
+                      <td>{stat.assists_per_game}</td>
+                      <td>{stat.blocks_per_game}</td>
+                      <td>{stat.steals_per_game}</td>
+                      <td>{stat.fg_percentage}%</td>
+                      <td>{stat.fg3_percentage}%</td>
+                      <td>{stat.ft_percentage}%</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+          {statsTwo && (
+            <div className="player-stats">
+              <h3>{capitalizePlayerName(playerTwo)}</h3>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Season</th>
+                    <th>Team</th>
+                    <th>GP</th>
+                    <th>MPG</th>
+                    <th>PPG</th>
+                    <th>RPG</th>
+                    <th>APG</th>
+                    <th>BPG</th>
+                    <th>SPG</th>
+                    <th>FG%</th>
+                    <th>3P%</th>
+                    <th>FT%</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {statsTwo.map((stat, index) => (
+                    <tr key={index}>
+                      <td>{stat.season}</td>
+                      <td>{stat.team}</td>
+                      <td>{stat.games_played}</td>
+                      <td>{stat.minutes_per_game}</td>
+                      <td>{stat.points_per_game}</td>
+                      <td>{stat.rebounds_per_game}</td>
+                      <td>{stat.assists_per_game}</td>
+                      <td>{stat.blocks_per_game}</td>
+                      <td>{stat.steals_per_game}</td>
+                      <td>{stat.fg_percentage}%</td>
+                      <td>{stat.fg3_percentage}%</td>
+                      <td>{stat.ft_percentage}%</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           )}
         </div>
-        <div className="player-stats">
-          <h3>{playerTwo}</h3>
-          {statsTwo ? (
-            <table>
-              <thead>
-                <tr>
-                  <th>Season</th>
-                  <th>Team</th>
-                  <th>GP</th>
-                  <th>MPG</th>
-                  <th>PPG</th>
-                  <th>RPG</th>
-                  <th>APG</th>
-                  <th>BPG</th>
-                  <th>SPG</th>
-                  <th>FG%</th>
-                  <th>3P%</th>
-                  <th>FT%</th>
-                </tr>
-              </thead>
-              <tbody>
-                {statsTwo.map((stat, index) => (
-                  <tr key={index}>
-                    <td>{stat.season}</td>
-                    <td>{stat.team}</td>
-                    <td>{stat.games_played}</td>
-                    <td>{stat.minutes_per_game}</td>
-                    <td>{stat.points_per_game}</td>
-                    <td>{stat.rebounds_per_game}</td>
-                    <td>{stat.assists_per_game}</td>
-                    <td>{stat.blocks_per_game}</td>
-                    <td>{stat.steals_per_game}</td>
-                    <td>{stat.fg_percentage}%</td>
-                    <td>{stat.fg3_percentage}%</td>
-                    <td>{stat.ft_percentage}%</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          ) : (
-            !loading && <p>No stats available</p>
-          )}
-        </div>
-      </div>
+      )}
     </div>
   );
 }
