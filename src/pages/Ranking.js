@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';
 import PlayerList from '../components/PlayerList';
 import RankingSettings from '../components/RankingSettings';
@@ -90,10 +90,15 @@ function Ranking() {
   const [search, setSearch] = useState('');
   const [startNumber, setStartNumber] = useState(1);
   const [order, setOrder] = useState('ascending');
+  const [filteredPlayers, setFilteredPlayers] = useState(nba75Players);
 
-  const filteredPlayers = players.filter((player) =>
-    player.name.toLowerCase().includes(search.toLowerCase())
-  );
+
+useEffect(() => {
+    const filtered = players.filter((player) =>
+      player.name.toLowerCase().includes(search.toLowerCase())
+    );
+    setFilteredPlayers(filtered);
+  }, [search, players]);
 
   const handleDragEnd = (result) => {
     const { source, destination } = result;
@@ -105,6 +110,10 @@ function Ranking() {
       source.index === destination.index
     )
       return;
+
+      if (search && source.droppableId === 'players' && destination.droppableId === 'players') {
+        return;
+      }
 
     let sourceList, setSourceList, destinationList, setDestinationList;
 
@@ -124,11 +133,40 @@ function Ranking() {
       setDestinationList = setRankedPlayers;
     }
 
-    const [movedItem] = sourceList.splice(source.index, 1);
-    destinationList.splice(destination.index, 0, movedItem);
+  const movedItem = sourceList.find(player => player.id === result.draggableId);
 
-    setSourceList([...sourceList]);
-    setDestinationList([...destinationList]);
+  if (source.droppableId === destination.droppableId) {
+    // Moving within the same list
+    const newList = Array.from(sourceList);
+    newList.splice(source.index, 1);
+    newList.splice(destination.index, 0, movedItem);
+    setSourceList(newList);
+
+    // If moving within players list, update filteredPlayers
+    if (source.droppableId === 'players' && search) {
+      const newFilteredPlayers = newList.filter((player) =>
+        player.name.toLowerCase().includes(search.toLowerCase())
+      );
+      setFilteredPlayers(newFilteredPlayers);
+    }
+  } else {
+    // Moving between different lists
+    const newSourceList = sourceList.filter(player => player.id !== result.draggableId);
+    const newDestList = [
+      ...destinationList.slice(0, destination.index),
+      movedItem,
+      ...destinationList.slice(destination.index)
+    ];
+ setSourceList(newSourceList);
+      setDestinationList(newDestList);
+
+      // Update filteredPlayers if necessary
+      if (source.droppableId === 'players') {
+        const newFilteredPlayers = newSourceList.filter((player) =>
+          player.name.toLowerCase().includes(search.toLowerCase())
+        );
+        setFilteredPlayers(newFilteredPlayers);
+      }}
   };
 
   return (
