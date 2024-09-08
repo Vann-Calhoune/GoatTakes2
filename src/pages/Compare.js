@@ -81,6 +81,7 @@ function Compare() {
   };
   return (
     <div className="compare-container">
+    <h1>Compare Players</h1>
       <div className="input-group">
         <input
           type="text"

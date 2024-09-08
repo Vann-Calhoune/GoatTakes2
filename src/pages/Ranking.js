@@ -133,7 +133,7 @@ function Ranking() {
 
   return (
     <div className="ranking-page">
-      <h1>Ranking Page</h1>
+      <h1>Rank the NBA 75th Anniversary Team</h1>
 
       <RankingSettings
         startNumber={startNumber}

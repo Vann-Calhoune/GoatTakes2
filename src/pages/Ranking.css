@@ -2,20 +2,19 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
-  font-family: 'Arial', sans-serif;
 }
 
 h1 {
   text-align: center;
-  color: #2c3e50;
+  color: var(--secondary-color);
   margin-bottom: 2rem;
 }
 
 .search-input {
-  width: calc(50% - 1rem); /* Adjust width to cover only the players container */
+  width: calc(50% - 1rem);
   padding: 0.75rem;
   font-size: 1rem;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--border-color);
   border-radius: 0.25rem;
   margin-bottom: 1rem;
   transition: border-color 0.2s ease-in-out;
@@ -23,7 +22,7 @@ h1 {
 
 .search-input:focus {
   outline: none;
-  border-color: #4299e1;
+  border-color: var(--primary-color);
 }
 
 .players-container {
@@ -39,7 +38,7 @@ h1 {
 .droppable-container {
   flex: 1;
   padding: 1rem;
-  background-color: #f8f9fa;
+  background-color: #ffffff;
   border-radius: 0.5rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   overflow-y: auto;
@@ -50,50 +49,50 @@ h2 {
   margin-top: 0;
   margin-bottom: 1rem;
   font-size: 1.25rem;
-  color: #4a5568;
+  color: var(--secondary-color);
 }
 
 .player-list {
   display: flex;
   flex-direction: column;
-  gap: 1rem; /* Increased gap between player items */
+  gap: 1rem;
 }
 
 .player-item {
   display: flex;
   align-items: center;
-  padding: 1rem; /* Increased padding */
+  padding: 1rem;
   background-color: #fff;
-  border: 1px solid #e2e8f0;
-  border-radius: 0.5rem; /* Increased border radius */
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
   transition: background-color 0.2s ease, transform 0.2s ease;
   cursor: grab;
 }
 
 .player-item:hover {
-  background-color: #f7fafc;
+  background-color: var(--background-color);
   transform: translateY(-2px);
 }
 
 .player-img {
-  width: 60px; /* Increased image size */
-  height: 60px; /* Increased image size */
+  width: 60px;
+  height: 60px;
   margin-right: 1rem;
   border-radius: 50%;
   object-fit: cover;
 }
 
 .player-name {
-  font-size: 1.1rem; /* Increased font size */
+  font-size: 1.1rem;
   font-weight: 500;
-  color: #2d3748;
+  color: var(--text-color);
 }
 
 .rank-number {
-  font-size: 1.5rem; /* Increased font size */
+  font-size: 1.5rem;
   font-weight: bold;
   margin-right: 1rem;
-  color: #4a5568;
+  color: var(--secondary-color);
 }
 
 .ranking-settings {
@@ -105,14 +104,14 @@ h2 {
 
 .ranking-settings label {
   font-weight: 500;
-  color: #4a5568;
+  color: var(--secondary-color);
 }
 
 .ranking-settings input,
 .ranking-settings select {
   padding: 0.5rem;
   font-size: 1rem;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--border-color);
   border-radius: 0.25rem;
   transition: border-color 0.2s ease-in-out;
 }
@@ -120,5 +119,5 @@ h2 {
 .ranking-settings input:focus,
 .ranking-settings select:focus {
   outline: none;
-  border-color: #4299e1;
+  border-color: var(--primary-color);
 }
