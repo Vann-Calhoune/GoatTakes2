@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';
+import { DragDropContext, Droppable } from '@hello-pangea/dnd';
 import PlayerList from '../components/PlayerList';
 import RankingSettings from '../components/RankingSettings';
 import RankingContainer from '../components/RankingContainer';
