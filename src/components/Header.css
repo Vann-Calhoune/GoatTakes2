@@ -1,25 +1,56 @@
 .header {
-  background-color: #282c34;
-  padding: 1rem;
+  background-color: #1a202c;
+  padding: 1rem 2rem;
   color: white;
-  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #a0aec0;
+
+}
+
+.header nav {
+  margin-top: 1rem;
 }
 
 .header nav ul {
   list-style-type: none;
   padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
 }
 
 .header nav ul li {
-  display: inline;
   margin: 0 1rem;
 }
 
 .header nav ul li a {
-  color: white;
+  color: #a0aec0;
   text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease-in-out;
+  font-size: 1rem;
 }
 
 .header nav ul li a:hover {
-  text-decoration: underline;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+@media (min-width: 768px) {
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .header nav {
+    margin-top: 0;
+  }
 }

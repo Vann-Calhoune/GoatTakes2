@@ -1,44 +1,134 @@
 .compare-container {
-  padding: 20px;
-  max-width: 800px;
+  padding: 2rem;
+  max-width: 1200px;
   margin: 0 auto;
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .input-group {
   display: flex;
-  flex-direction: column;
-  gap: 10px;
+  gap: 1rem;
+  margin-bottom: 2rem;
 }
 
-input {
-  padding: 10px;
-  font-size: 16px;
+.input-group input {
+  flex: 1;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.3s ease;
 }
 
-button {
-  padding: 10px;
-  font-size: 16px;
+.input-group input:focus {
+  border-color: #4299e1;
+}
+
+.input-group button {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
   cursor: pointer;
+  background-color: #4299e1;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.input-group button:hover {
+  background-color: #3182ce;
 }
 
 .stats-container {
   display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
+  gap: 2rem;
+  margin-top: 2rem;
 }
 
 .player-stats {
   flex: 1;
-  margin: 0 10px;
+  background-color: #ffffff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  max-height: 600px;
 }
 
-pre {
-  background-color: #f4f4f4;
-  padding: 10px;
-  border-radius: 4px;
-  white-space: pre-wrap;
+.player-stats h3 {
+  text-align: center;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  color: #2d3748;
+}
+
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+thead {
+  background-color: #4299e1;
+  color: #fff;
+  position: sticky;
+  top: 0;
+}
+
+th, td {
+  padding: 0.75rem;
+  text-align: center;
+  border-bottom: 1px solid #e2e8f0;
+  font-size: 0.875rem;
+}
+
+th {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f7fafc;
+}
+
+tbody tr:hover {
+  background-color: #edf2f7;
+  transition: background-color 0.2s ease;
 }
 
 .error {
-  color: red;
+  color: #e53e3e;
+  text-align: center;
+  margin-top: 1rem;
+  font-weight: bold;
+}
+
+.loading-spinner {
+  border: 4px solid #e2e8f0;
+  border-radius: 50%;
+  border-top: 4px solid #4299e1;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin: 2rem auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@media (max-width: 768px) {
+  .stats-container {
+    flex-direction: column;
+  }
+
+  .player-stats {
+    max-width: 100%;
+  }
 }
