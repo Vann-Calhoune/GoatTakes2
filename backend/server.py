@@ -5,7 +5,7 @@ from nba_api.stats.static import players
 import time
 
 app = Flask(__name__)
-CORS(app, resources={r"/api/*": {"origins": "*"}})
+CORS(app, resources={r"/api/*": {"origins": "https://goattakes2.netlify.app/"}})
 
 # Cache for stat leaders and standings
 cache = {
@@ -192,4 +192,4 @@ def get_standings():
         return jsonify({'error': f"Failed to fetch standings: {str(e)}"}), 500
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
