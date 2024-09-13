@@ -14,7 +14,7 @@ function Compare() {
     try {
       setLoading(true);
       const response = await axios.get(
-        `https://AnacondaLee.pythonanywhere.com/api/player-stats?name=${encodeURIComponent(playerName)}`
+        `http://127.0.0.1:5000/api/player-stats?name=${encodeURIComponent(playerName)}`
       );
       return response.data;
     } catch (error) {

@@ -15,7 +15,7 @@ function Home() {
 
 const fetchStatLeaders = async () => {
   try {
-    const response = await axios.get('https://AnacondaLee.pythonanywhere.com/api/stat-leaders');
+    const response = await axios.get('http://127.0.0.1:5000/api/stat-leaders');
     if (response.data.error) {
       throw new Error(response.data.error);
     }
@@ -39,7 +39,7 @@ function getStatFullName(stat) {
 
   const fetchStandings = async () => {
     try {
-      const response = await axios.get('https://AnacondaLee.pythonanywhere.com/api/standings');
+      const response = await axios.get('http://127.0.0.1:5000/api/standings');
       setStandings(response.data);
     } catch (error) {
       console.error('Error fetching standings:', error);
