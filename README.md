@@ -29,7 +29,7 @@ The application has three pages:
    git clone https://github.com/Vann-Calhoune/GoatTakes2.git
    cd GoatTakes2
 
-2. **Set up and activate virtual environemtn**   (optional)
+2. **Set up and activate virtual environment**   (optional)
 
    ```bash
    python3 -m venv venv
